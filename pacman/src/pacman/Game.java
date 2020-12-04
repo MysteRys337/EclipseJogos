@@ -226,6 +226,10 @@ public class Game extends Canvas implements Runnable,KeyListener{
 				gameOverTick();
 				break;
 				
+			case win:
+				gameOverTick();
+				break;
+				
 			case cutcene:
 				cutceneTick();
 				break;
@@ -244,7 +248,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			e.tick();
 		}
 		
-		if (world.numPellets == player.numPellets) {
+		if (World.numPellets == player.numPellets) {
 			
 			gamestate = Gamestate.win;
 		}
@@ -272,6 +276,7 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			CUR_LEVEL = 1;
 			String newWorld = "level"+CUR_LEVEL+".png";
 			World.restartGame(newWorld);
+			gamestate = Gamestate.ingame;
 		}
 	}
 	
@@ -304,16 +309,26 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			e.render(g);
 		}
 		
-		if ( gamestate == Gamestate.pause) {
-			ui.renderPause(g);
-			
-		} else if ( gamestate == Gamestate.win) {
-			ui.renderWin(g);
-			
-		} else { 
-			ui.render(g);
-			
+		switch(gamestate) {
+		
+			case pause:
+				ui.renderPause(g);
+				break;
+				
+			case win:
+				ui.renderWin(g,showMessageGameOver);
+				break;
+				
+			case gameover:
+				ui.renderGameOver(g,showMessageGameOver);
+				break;
+				
+			default:
+				ui.render(g);
+				break;
+				
 		}
+
 		
 		//Renderizar a imagem de fundo
 		g.dispose();
@@ -327,13 +342,23 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	//Funcoes que coordenam as coisas que sao apertadas
 	public void keyPressed(KeyEvent e) {
+
 		if(gamestate == Gamestate.ingame) {
-			playerControl(e);	
 			
-		} else if (gamestate == Gamestate.pause){
+			playerControl(e);
 			
-			if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+		} else if (gamestate == Gamestate.pause) {
+			
+			if(e.getKeyCode() == KeyEvent.VK_ESCAPE) 
+				
 				gamestate = Gamestate.ingame;
+			
+			
+		} else if(gamestate == Gamestate.gameover || gamestate == Gamestate.win) {
+			
+			if(e.getKeyCode() == KeyEvent.VK_ENTER) 
+				restartGame = true;
+
 		}
 		
 	}
@@ -366,14 +391,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	public void keyReleased(KeyEvent e) {
 		
-		if (gamestate == Gamestate.ingame) {
-			
-			movementRelease(e);
-		}
-	}
-	
-	public void movementRelease(KeyEvent e) {
-		
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT ||
 			e.getKeyCode() == KeyEvent.VK_D) {
 			
@@ -394,8 +411,9 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			
 				player.down = false;						
 		}
-		if(e.getKeyCode() == KeyEvent.VK_ENTER && gamestate == Gamestate.gameover) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER ) {
 			
+			if(gamestate == Gamestate.gameover)
 				restartGame = false;
 		}
 	}

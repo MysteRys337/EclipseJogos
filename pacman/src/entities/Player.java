@@ -15,7 +15,6 @@ public class Player extends Entity{
 	public double  speed;
 	
 	//Variaveis de estatísticas
-	private boolean isAlive = true;
 	private int     pontos;
 	public int      numPellets;
 	
@@ -38,7 +37,6 @@ public class Player extends Entity{
 		
 		//Chamando construtor da classe Entity
 		super(x, y, width, height, speed, sprite);
-		isAlive = true;
 		depth   = 1;
 		pontos  = 0;
 		

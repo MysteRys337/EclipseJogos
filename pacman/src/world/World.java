@@ -11,6 +11,7 @@ import entities.Cherry;
 import entities.Enemy;
 import entities.Entity;
 import entities.Pellets;
+import entities.Player;
 import pacman.Game;
 import world.tiles.*;
 
@@ -23,7 +24,7 @@ public class World {
 	public static final int TILE_SIZE = 16;
 	public Random gerador = new Random();
 	
-	public int numPellets;
+	public static int numPellets;
 
 	// Construtor do mundo
 	public World(String path) throws IOException {
@@ -124,8 +125,15 @@ public class World {
 
 	// Reiniciar o jogo
 	public static void restartGame(String level) {
-		new Game();
-		return;
+		Game.player = new Player(0,0,16,16,2,Game.spritesheet.getSprite(32, 0, 16, 16));
+		Game.entities.clear();
+		Game.entities.add(Game.player);
+		Game.player.numPellets = numPellets = 0;
+		try {
+			Game.world = new World("/level1.png");
+			
+		} catch (IOException e) {e.printStackTrace();}
+		
 	}
 	
 	

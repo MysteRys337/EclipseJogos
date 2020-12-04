@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import pacman.Game;
+import world.Gamestate;
 import world.pathfinding.*;
 
 public class Enemy extends Entity{
@@ -63,7 +64,7 @@ public class Enemy extends Entity{
 			}
 		}
 		else {
-			
+			Game.gamestate = Gamestate.gameover;
 			
 		}
 			

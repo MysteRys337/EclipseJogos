@@ -21,6 +21,7 @@ public class Entity {
 	public static BufferedImage ENEMY4 = Game.spritesheet.getSprite(48, 96, 16, 16);
 	
 	protected double x,y;
+	protected int    maskX,maskY;
 	protected int    width,height;
 	protected double speed;
 
@@ -35,6 +36,7 @@ public class Entity {
 	public Entity(int x, int y, int width, int height, double speed, BufferedImage sprite) {
 		this.x      = x;
 		this.y      = y;
+		this.maskX  = maskY = 0;
 		this.width  = width;
 		this.height = height;
 		this.speed  = speed;
@@ -144,8 +146,8 @@ public class Entity {
 	//Conferir colisao entre duas entidades
 	public static boolean isColidding(Entity e1,Entity e2) {
 		
-		Rectangle e1Mask = new Rectangle((int)(e1.x),(int)(e1.y),e1.width,e1.height);
-		Rectangle e2Mask = new Rectangle((int)(e2.x),(int)(e2.y),e2.width,e2.height);
+		Rectangle e1Mask = new Rectangle((int)(e1.x + e1.maskX),(int)(e1.y + e1.maskY),e1.width,e1.height);
+		Rectangle e2Mask = new Rectangle((int)(e2.x + e2.maskX),(int)(e2.y + e2.maskY),e2.width,e2.height);
 		
 		return e1Mask.intersects(e2Mask);
 	}
@@ -159,6 +161,6 @@ public class Entity {
 		
 		//Funcao para renderizar mascara das entidades(Funcao de debug)
 		g.setColor(Color.blue);
-		g.fillRect((int)(x - Camera.x), (int)(y - Camera.y), width, height);
+		g.fillRect((int)(x - Camera.x) + maskX, (int)(y - Camera.y) + maskY, width, height);
 	}
 }
