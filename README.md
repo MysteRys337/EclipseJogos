@@ -8,8 +8,8 @@ Jogos que estou fazendo e já fiz:
 - [x] Zelda (Rabbitmania)
 - [x] Pacman
 - [x] Flappy Bird
-- [ ] Super Mario ( Em progresso )
-- [ ] Tower Defense
+- [x] Super Mario 
+- [ ] Tower Defense ( Em progresso )
 - [ ] Minicraft
 - [ ] Space Invaders
 - [ ] Team Fortress
