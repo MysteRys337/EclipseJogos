@@ -19,9 +19,8 @@ public class Player extends AnimatedEntity{
 	
 	private byte points;
 	
-	private byte jumpHeight;
-	private byte jumpFrames;
-	private byte jumpSpeed;
+	private double gravity = 0.4;
+	private double vspd = 0;
 	
 	private UI ui;
 
@@ -37,9 +36,6 @@ public class Player extends AnimatedEntity{
 		this.minIndex  = 0;
 		this.maxIndex  = 2;
 		this.dir       = 0;
-		
-		this.jumpHeight = 50;
-		this.jumpSpeed  = 2;
 		
 		this.moved = this.transformed = this.isFalling = false;
 		
@@ -88,7 +84,9 @@ public class Player extends AnimatedEntity{
 				action.setAction(false);
 			}
 			
-		} else if (World.isFree(this.getX(), this.getY() + this.getSpeed(),maskW,maskH) && !isJumping) {
+		} 
+		
+		if (World.isFree(this.getX(), this.getY() + this.getSpeed(),maskW,maskH) && !isJumping) {
 			
 			y += speed;
 			isFalling = true;
@@ -110,25 +108,29 @@ public class Player extends AnimatedEntity{
 	
 	public void jumping(PlayerAction action) {
 		
-		if(isJumping) {
-			
-			if(World.isFree(this.getX(), this.getY() - jumpSpeed, maskW, maskH)) {
-				
-				y-=jumpSpeed;
-				jumpFrames+=jumpSpeed;
-				if(jumpFrames == jumpHeight) {
-					isJumping = false;
-					action.setAction(false);
-					jumpFrames = 0;
-				}
-				
-			} else {
-				
-				isJumping  = false;
-				action.setAction(false);
-				jumpFrames = 0;
-			}
+		vspd+=gravity;
+		if(!World.isFree((int)x,(int)(y+1),maskW,maskH ) && isJumping)
+		{
+			vspd = -8;
+			isJumping = false;
 		}
+		
+		if(!World.isFree((int)x,(int)(y+vspd),maskW,maskH)) {
+			
+			int signVsp = 0;
+			if(vspd >= 0)
+			{
+				signVsp = 1;
+			}else  {
+				signVsp = -1;
+			}
+			while(World.isFree((int)x,(int)(y+signVsp),maskW,maskH)) {
+				y = y+signVsp;
+			}
+			vspd = 0;
+		}
+		
+		y = y + vspd;
 	}
 	
 	public void animation() {
