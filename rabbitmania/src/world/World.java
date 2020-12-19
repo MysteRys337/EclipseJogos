@@ -215,11 +215,11 @@ public class World {
 		
 		int x4 = (xnext + width-1) / TILE_SIZE,y4 = (ynext + height-1) / TILE_SIZE;
 		
-		if ( ! ( (tiles[x1 + (y1*World.WIDTH)] instanceof WallTile) ||
-				   (tiles[x2 + (y2*World.WIDTH)] instanceof WallTile) || 
-				   (tiles[x3 + (y3*World.WIDTH)] instanceof WallTile) ||
-				   (tiles[x4 + (y4*World.WIDTH)] instanceof WallTile) )) {
-			
+		if (!( (tiles[x1 + (y1*World.WIDTH)] instanceof WallTile) ||
+			   (tiles[x2 + (y2*World.WIDTH)] instanceof WallTile) || 
+			   (tiles[x3 + (y3*World.WIDTH)] instanceof WallTile) ||
+			   (tiles[x4 + (y4*World.WIDTH)] instanceof WallTile) )) {
+	
 			return true;
 		}
 		if (z > 0) {
