@@ -9,8 +9,8 @@ Jogos que estou fazendo e já fiz:
 - [x] Pacman
 - [x] Flappy Bird
 - [x] Super Mario 
-- [ ] Tower Defense ( Em progresso )
-- [ ] Minicraft
+- [x] Tower Defense 
+- [ ] Minicraft ( Em Progresso )
 - [ ] Space Invaders
 - [ ] Team Fortress
 - [ ] Catch the Crab
