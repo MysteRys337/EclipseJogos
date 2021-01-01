@@ -10,8 +10,8 @@ Jogos que estou fazendo e já fiz:
 - [x] Flappy Bird
 - [x] Super Mario 
 - [x] Tower Defense 
-- [ ] Minicraft ( Em Progresso )
-- [ ] Space Invaders
+- [x] Minicraft 
+- [ ] Space Invaders (Em progresso)
 - [ ] Team Fortress
 - [ ] Catch the Crab
 - [ ] Golf
