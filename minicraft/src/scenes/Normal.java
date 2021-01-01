@@ -6,13 +6,12 @@ import java.util.Collections;
 
 import entities.Entity;
 import entities.enemies.Enemy;
-import entities.enemies.EnemySpawner;
 import entities.player.Player;
-import entities.towers.TowerGun;
 import graphics.UI;
 import main.Game;
 import world.Context;
 import world.World;
+import items.blocks.*;
 
 public class Normal extends Scene{
 
@@ -34,21 +33,20 @@ public class Normal extends Scene{
 		entities = new ArrayList<Entity>();
 		enemies  = new ArrayList<Enemy>();
 		
-		world = new World("/level1.png",width,height);
+		world = new World(width,height);
 		
 		this.context = new Context(width, height, World.getWIDTH(), World.getHEIGHT(), Gamestate.normal);
 		
 		//Criando o player, e adicionando ele na ArrayList
-		player = new Player(World.spawnX,World.spawnY,16,16,2,Game.spritesheet.getSprite("player_rock"));
+		player = new Player(100,100,16,16,2,"player",ui);
 		
 		entities.add(player);
 	}
 
 	public void tick() {
 		
-		if (!player.isAlive())
-			Game.gamestate = Gamestate.gameover;
-			
+		world.tick();
+		
 		player.tick(context,action);
 		
 		//Renderizar todas as entidades na tela
@@ -60,7 +58,7 @@ public class Normal extends Scene{
 	
 	public static void spawnEntity(int x,int y, String entityName) {
 		
-		int size = World.TILE_SIZE;
+		int size = World.BLOCK_SIZE;
 		
 		String[] split = entityName.split("_");
 		
@@ -70,19 +68,35 @@ public class Normal extends Scene{
 			enemies.add(e);
 			
 		}
-		else if(split[0].equals("tower")) {
-			if(World.isConstructableTile(x, y)) {
-				TowerGun tg = new TowerGun(x-(x%size),y-(y%size),size,size,1,Game.spritesheet.getSprite(entityName));
-				entities.add(tg);
-				player.decreaseMoney(20);
-			}
-		}
 	}
 	
-	public static void spawnEnemySpawner(int x,int y, int tile_size) {
+	public static void removeEntity(Entity e) {
+		entities.remove(e);
+		if(e instanceof Enemy)
+			enemies.remove(e);
+	}
+	
+	public static void placeBlock(int x,int y, Block block) {
 		
-		EnemySpawner es = new EnemySpawner(x,y,tile_size,tile_size,0,null);
-		entities.add(es);
+		int tileSize = World.BLOCK_SIZE;
+		
+		boolean canPlaceABlock     = World.canPlaceBlock(x, y);
+		boolean playerPositionFree = Math.abs(x - player.getX() - player.getMaskW()) > tileSize || Math.abs(y - player.getY() - player.getMaskH()) > tileSize;
+		
+		if(canPlaceABlock && playerPositionFree) 
+			if(block != null)
+				World.setBlock(x/tileSize, y/tileSize, new SolidBlock(x-(x%tileSize),y-(y%tileSize),block.getSprite()));
+		
+	}
+	
+	public static Block removeBlock(int x,int y) {
+		
+		Block block = World.canRemoveBlock(x,y);
+		
+		if(block != null)
+			World.breakBlock(x, y);
+		
+		return block;
 	}
 	
 	public static void gameOver() {
@@ -103,7 +117,7 @@ public class Normal extends Scene{
 			e.render(g);
 		}
 		
-		ui.render(g,player,context);
+		ui.render(g);
 	}
 
 }

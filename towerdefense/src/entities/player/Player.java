@@ -67,10 +67,13 @@ public class Player extends Entity{
 		
 		if(action.getLeft() && xCamera > ctx.getScreenWIDTH()/2)
 			xCamera -= speed;
+		
 		else if(action.getRight() && xCamera < ctx.getScreenWIDTH() - ctx.getWorldWIDTH())
 			xCamera += speed;
+		
 		if(action.getDown() && yCamera < ctx.getScreenHEIGHT()) 
 			yCamera += speed;
+		
 		else if(action.getUp() && yCamera > ctx.getScreenHEIGHT()/2) 
 			yCamera -=speed;
 	}
