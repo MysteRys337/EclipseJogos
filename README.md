@@ -11,10 +11,10 @@ Jogos que estou fazendo e já fiz:
 - [x] Super Mario 
 - [x] Tower Defense 
 - [x] Minicraft 
-- [ ] Space Invaders (Em progresso)
-- [ ] Team Fortress
-- [ ] Catch the Crab
+- [x] Space Invaders 
+- [ ] Catch the Crab 
 - [ ] Golf
 - [ ] Brick Breaker 
-- [ ] Tabuleiro
+- [ ] Jogo da Velha
 - [ ] Candy Crush 
+- [ ] Team Fortress
