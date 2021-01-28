@@ -1,11 +1,9 @@
 package graphics;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 
 import entities.player.Player;
-import world.Context;
 
 public class UI extends Interface{
 

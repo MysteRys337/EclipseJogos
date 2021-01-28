@@ -32,15 +32,15 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener{
 
 	//Declarando atributos da minha classe
 	
-	private JFrame frame; 					 // Janela do jogo
+	private JFrame frame; 			 		 // Janela do jogo
 	
-	private static boolean isRunning; 		 // Variavel para manter o jogo ligado
+	private static boolean isRunning;		 // Variavel para manter o jogo ligado
 	
-	private final static int WIDTH  = 240; 	 // Comprimento da janela a ser criada
-	private final static int HEIGHT = 160; 	 // Altura da janela a ser criada
-	public final int         SCALE  = 4; 	 // x vezes que a janela sera aumentada
+	private final int WIDTH;  				 // Comprimento da janela a ser criada
+	private final int HEIGHT;  	     		 // Altura da janela a ser criada
+	public final int  SCALE;  	     		 // x vezes que a janela sera aumentada
 	
-	private static Thread    thread;		 // Criando threads
+	private static Thread thread;  		 	 // Criando threads
 	
 	public static BufferedImage layer; 		 // Imagem de fundo do meu jogo
 	public static Spritesheet   spritesheet; // Spritesheet com todos os sprites
@@ -53,17 +53,21 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener{
 	private Gameover gameover;
 	private Cutcene  cutcene;
 	
-	public static int getWIDTH() {
+	public int getWIDTH() {
 		return WIDTH;
 	}
 	
 	//Metodo para pegar o valor e HEIGHT
-	public static int getHEIGHT() {
+	public int getHEIGHT() {
 		return HEIGHT;
 	}
 	
 	//Construtor do jogo
 	public Game() {
+		
+		WIDTH  = 480;
+		HEIGHT = 320;
+		SCALE  = 2;
 		
 		gamestate = Gamestate.normal;
 		

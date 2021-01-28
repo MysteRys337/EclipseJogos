@@ -190,23 +190,27 @@ public class Spritesheet {
 		// 2# Passo: Pegar todos os sprites
 		int index = 0;
 		
+		boolean noMoreSprites = false; //Variável para sinalizar quando os sprites acabaram
+		
 		for (int y = 0; y < spritesheet.getHeight(); y += SPRITE_SIZE) {
-			
 			for ( int x = 0; x < spritesheet.getWidth(); x += SPRITE_SIZE) {
-				
 				BufferedImage tmp = spritesheet.getSubimage(x,y,SPRITE_SIZE,SPRITE_SIZE);
 				if(containsNonTransparentPixel(tmp)) {
-					
 					if(index < spriteNames.size()) {
 						sprites[index] = new Sprite(tmp, spriteNames.get(index));
 						index++;
 						
 					}
 				} else {
-				
+					
+					//Se não possui mais sprites a ser lido( não foi detectado um sprite no primeiro tile da linha)
+					if(x == 0)
+						noMoreSprites = true;
 					break;
 				}
 			}
+			if(noMoreSprites) 
+				break;
 		}
 		
 	}

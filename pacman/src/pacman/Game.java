@@ -28,8 +28,8 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	private static boolean isRunning; 				// Variavel para manter o jogo ligado
 	
-	private final static int WIDTH  = 240; 			// Comprimento da janela a ser criada
-	private final static int HEIGHT = 160; 			// Altura da janela a ser criada
+	public final static int WIDTH  = 240; 			// Comprimento da janela a ser criada
+	public final static int HEIGHT = 160; 			// Altura da janela a ser criada
 	public final static int  SCALE  = 4; 			// x vezes que a janela sera aumentada
 	private static Thread    thread;				// Criando threads
 	

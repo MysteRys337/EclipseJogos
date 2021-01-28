@@ -63,6 +63,8 @@ public class Player extends Entity{
 
 	public void tick() {
 		
+		System.out.println(getX());
+		
 		movement();	
 		checkCollision();
 		updateCamera();
