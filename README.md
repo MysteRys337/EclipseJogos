@@ -12,8 +12,8 @@ Jogos que estou fazendo e já fiz:
 - [x] Tower Defense 
 - [x] Minicraft 
 - [x] Space Invaders 
-- [ ] Catch the Crab 
-- [ ] Golf
+- [x] Catch the Crab 
+- [ ] Golf (Em progresso)
 - [ ] Brick Breaker 
 - [ ] Jogo da Velha
 - [ ] Candy Crush 
