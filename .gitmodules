@@ -1,0 +1,24 @@
+[submodule "pacman-game-clone"]
+	path = pacman-game-clone
+	url = https://github.com/GuaraProductions/pacman-game-clone
+[submodule "tower-defense"]
+	path = tower-defense
+	url = https://github.com/GuaraProductions/tower-defense
+[submodule "terraria-clone"]
+	path = terraria-clone
+	url = https://github.com/GuaraProductions/terraria-clone
+[submodule "flappy-bird-clone"]
+	path = flappy-bird-clone
+	url = https://github.com/GuaraProductions/flappy-bird-clone
+[submodule "catch-the-crab"]
+	path = catch-the-crab
+	url = https://github.com/GuaraProductions/catch-the-crab
+[submodule "guara-Invaders"]
+	path = guara-Invaders
+	url = https://github.com/GuaraProductions/guara-Invaders
+[submodule "super-guara-adventures"]
+	path = super-guara-adventures
+	url = https://github.com/GuaraProductions/super-guara-adventures
+[submodule "rabbitmania"]
+	path = rabbitmania
+	url = https://github.com/GuaraProductions/rabbitmania
