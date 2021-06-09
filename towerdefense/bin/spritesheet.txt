@@ -1,9 +1,0 @@
-player_rock
-tile_grass
-tile_road
-tile_constructable
-tile_unconstructable
-enemy_dynamite_1
-enemy_dynamite_2
-tower_gun
-
